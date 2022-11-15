@@ -12,8 +12,8 @@ const DUMMY_PLACES = [
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {
-      lat: "40.7484405",
-      lng: "-73.9856644",
+      lat: 40.7484405,
+      lng: -73.9856644,
     },
     creator: "u1",
   },
@@ -25,8 +25,8 @@ const DUMMY_PLACES = [
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {
-      lat: "40.7484405",
-      lng: "-73.9856644",
+      lat: 40.7484405,
+      lng: -73.9856644,
     },
     creator: "u2",
   },
@@ -38,8 +38,8 @@ const DUMMY_PLACES = [
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {
-      lat: "40.7484405",
-      lng: "-73.9856644",
+      lat: 40.7484405,
+      lng: -73.9856644,
     },
     creator: "u3",
   },

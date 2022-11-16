@@ -20,10 +20,10 @@ const App = () => {
           <Route path={"/"} exact>
             <Users />
           </Route>
-          <Route path={"/:userId/place"} exact>
+          <Route path={"/:userId/places"} exact>
             <UserPlaces />
           </Route>
-          <Route path={"/place/new"}>
+          <Route path={"/places/new"} exact>
             <NewPlace />
           </Route>
           <Redirect to={"/"} />

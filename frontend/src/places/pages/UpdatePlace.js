@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { useForm } from "../../shared/hooks/form-hook";
+
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../../shared/util/validators";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
-import { useForm } from "../../shared/hooks/form-hook";
+import Card from "../../shared/components/UIElements/Card";
 
 import "./PlaceForm.css";
 
@@ -29,7 +31,7 @@ const DUMMY_PLACES = [
     id: "p2",
     imageUrl:
       "https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg",
-    title: "Empire State Building",
+    title: "Emp State Building",
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {
@@ -42,7 +44,7 @@ const DUMMY_PLACES = [
     id: "p3",
     imageUrl:
       "https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg",
-    title: "Empire State Building",
+    title: "ire State Building",
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {
@@ -75,19 +77,22 @@ const UpdatePlace = () => {
   const identifiedPlace = DUMMY_PLACES.find((p) => p.id === placeId);
 
   useEffect(() => {
-    setFormData(
-      {
-        title: {
-          value: identifiedPlace.title,
-          isValid: true,
+    if (identifiedPlace) {
+      setFormData(
+        {
+          title: {
+            value: identifiedPlace.title,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true,
+          },
         },
-        description: {
-          value: identifiedPlace.description,
-          isValid: true,
-        },
-      },
-      true
-    );
+        true
+      );
+    }
+
     setIsLoading(false);
   }, [setFormData, identifiedPlace]);
 
@@ -99,7 +104,9 @@ const UpdatePlace = () => {
   if (!identifiedPlace) {
     return (
       <div className="center">
-        <h2>Could not find place</h2>
+        <Card>
+          <h2>Could not find place</h2>
+        </Card>
       </div>
     );
   }

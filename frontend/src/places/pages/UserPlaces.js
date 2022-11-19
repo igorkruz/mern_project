@@ -21,7 +21,7 @@ const DUMMY_PLACES = [
     id: "p2",
     imageUrl:
       "https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg",
-    title: "Empire State Building",
+    title: "Emp State Building",
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {
@@ -34,7 +34,7 @@ const DUMMY_PLACES = [
     id: "p3",
     imageUrl:
       "https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg",
-    title: "Empire State Building",
+    title: "ire State Building",
     description: "The most famous place in NY",
     address: "20 W 34th St., New York",
     location: {

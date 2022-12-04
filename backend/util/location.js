@@ -3,10 +3,10 @@ const HttpError = require("../models/http-error");
 
 const API_KEY = "Google Geocoding Api";
 
-async function getCoordsByAdress(address) {
+function getCoordsByAdress(address) {
   return {
     lat: 40.7484405, //if not have google api key
-    lng: -73.9856644, // can use this part of code
+    lng: -73, // can use this part of code
   };
 
   //   const response = await axios.get(
@@ -14,7 +14,7 @@ async function getCoordsByAdress(address) {
   //       address
   //     )}&key=${API_KEY}`
   //   );
-  //   console.log(response);
+
   //   const data = response.data;
 
   //   if (!data || data.status === "ZERO_RESULTS") {

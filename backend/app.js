@@ -28,7 +28,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect("mongodb link for conecting ")
+  .connect("mongodb connection link")
   .then(() => {
     app.listen(5000);
   })

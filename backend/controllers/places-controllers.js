@@ -1,30 +1,13 @@
-const { v4: uuidv4 } = require("uuid");
 const { validationResult } = require("express-validator");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
 const Place = require("../models/place");
 const User = require("../models/user");
 const HttpError = require("../models/http-error");
 const getCoordsByAdress = require("../util/location");
 
-let DUMMY_PLACES = [
-  {
-    id: "p1",
-    // imageUrl:
-    //   "https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg",
-    title: "Empire State Building",
-    description: "The most famous place in NY",
-    address: "20 W 34th St., New York",
-    location: {
-      lat: 40.7484405,
-      lng: -73.9856644,
-    },
-    creator: "u1",
-  },
-];
-
 const getPlacesById = async (req, res, next) => {
-  const placeId = req.params.pid; //  {pid: p1}
+  const placeId = req.params.pid;
 
   let place;
   try {
@@ -42,7 +25,7 @@ const getPlacesById = async (req, res, next) => {
     return next(error);
   }
 
-  res.json({ place: place.toObject({ getters: true }) }); // {place} => {place: place}
+  res.json({ place: place.toObject({ getters: true }) });
 };
 
 const getPlacesByUserId = async (req, res, next) => {
@@ -60,6 +43,7 @@ const getPlacesByUserId = async (req, res, next) => {
     return next(error);
   }
 
+  //if (!places || places.;emgth ==== 0) {}
   if (!userWithPlaces || userWithPlaces.places.length === 0) {
     return next(
       new HttpError("Could not find places for a provided user id.", 404)
@@ -85,7 +69,7 @@ const createPlace = async (req, res, next) => {
   const { title, description, address, creator } = req.body;
 
   let coordinates = getCoordsByAdress();
-  // console.log(coordinates);
+
   // try {
   //   coordinates = await getCoordsByAdress(address);
   //   console.log(coordinates);

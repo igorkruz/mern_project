@@ -21,7 +21,7 @@ const Authentefication = () => {
 
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -81,7 +81,6 @@ const Authentefication = () => {
         });
 
         const responseData = await response.json();
-
         if (!response.ok) {
           throw new Error(responseData.message);
         }

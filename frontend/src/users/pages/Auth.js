@@ -76,6 +76,7 @@ const Authentefication = () => {
             "Content-Type": "application/json",
           }
         );
+
         auth.login(responseData.user.id);
       } catch (error) {}
     } else {

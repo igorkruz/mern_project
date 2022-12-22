@@ -7,8 +7,8 @@ import LoadingSpiner from "../../shared/components/UIElements/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const UserPlaces = () => {
-  const [loadedPlaces, setLoadedPlaces] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loadedPlaces, setLoadedPlaces] = useState();
 
   const userId = useParams().userId;
 
@@ -29,7 +29,7 @@ const UserPlaces = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
-          <LoadingSpiner asOverlay />{" "}
+          <LoadingSpiner asOverlay />
         </div>
       )}
       {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} />};

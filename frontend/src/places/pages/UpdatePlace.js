@@ -44,7 +44,6 @@ const UpdatePlace = () => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/places/${placeId}`
         );
-        console.log(responseData);
         setLoadedPlaces(responseData.place);
         setFormData(
           {

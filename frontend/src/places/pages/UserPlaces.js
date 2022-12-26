@@ -25,8 +25,8 @@ const UserPlaces = () => {
   }, [sendRequest, userId]);
 
   const placeDeletedHandler = (deletedPlaceId) => {
-    setLoadedPlaces((prevPlace) =>
-      prevPlace.filter((place) => place.id !== deletedPlaceId)
+    setLoadedPlaces((prevPlaces) =>
+      prevPlaces.filter((place) => place.id !== deletedPlaceId)
     );
   };
 
@@ -35,7 +35,7 @@ const UserPlaces = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
-          <LoadingSpiner asOverlay />
+          <LoadingSpiner />
         </div>
       )}
       {!isLoading && loadedPlaces && (

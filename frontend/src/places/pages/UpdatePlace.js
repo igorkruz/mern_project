@@ -44,6 +44,7 @@ const UpdatePlace = () => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/places/${placeId}`
         );
+        console.log(responseData);
         setLoadedPlaces(responseData.place);
         setFormData(
           {
@@ -66,6 +67,7 @@ const UpdatePlace = () => {
 
   const placeUpdateSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log(formState.inputs);
     try {
       await sendRequest(
         `http://localhost:5000/api/places/${placeId}`,
@@ -76,7 +78,7 @@ const UpdatePlace = () => {
         }),
         { "Content-Type": "application/json" }
       );
-      history.push(`/${auth.userId}/places`);
+      history.push("/" + auth.userId + "/places");
     } catch (error) {}
   };
 
@@ -118,7 +120,7 @@ const UpdatePlace = () => {
             id="description"
             element="textarea"
             label="Description"
-            validators={[VALIDATOR_MINLENGTH()]}
+            validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a valid description (min. 5 characters)"
             onInput={() => {}}
             initialValue={loadedPlaces.description}

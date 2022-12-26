@@ -81,7 +81,7 @@ const createPlace = async (req, res, next) => {
     title,
     description,
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbrvOZf5zaHg_9a8upGltfVtObFu_0QH1rcw&usqp=CAU",
+      "https://img.freepik.com/free-vector/merry-christmas-wallpaper-design_79603-2129.jpg?w=2000",
     address,
     location: coordinates,
     creator,
@@ -117,11 +117,9 @@ const createPlace = async (req, res, next) => {
 
 const updatePlace = async (req, res, next) => {
   const errors = validationResult(req);
-
   if (!errors.isEmpty()) {
-    console.log(errors);
     return next(
-      new HttpError("Invalid inputs pass, please check your data", 422)
+      new HttpError("Invalid inputs passed, please check your data.", 422)
     );
   }
 
@@ -133,7 +131,7 @@ const updatePlace = async (req, res, next) => {
     place = await Place.findById(placeId);
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not update place",
+      "Something went wrong, could not update place.",
       500
     );
     return next(error);
@@ -146,7 +144,7 @@ const updatePlace = async (req, res, next) => {
     await place.save();
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not update place",
+      "Something went wrong, could not update place.",
       500
     );
     return next(error);
@@ -159,19 +157,18 @@ const deletePlace = async (req, res, next) => {
   const placeId = req.params.pid;
 
   let place;
-
   try {
-    place = Place.findById(placeId).populate("creator");
+    place = await Place.findById(placeId).populate("creator");
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not delete place",
+      "Something went wrong, could not delete place.",
       500
     );
     return next(error);
   }
 
   if (!place) {
-    const error = new HttpError("Could not find place for this id", 404);
+    const error = new HttpError("Could not find place for this id.", 404);
     return next(error);
   }
 
@@ -184,15 +181,14 @@ const deletePlace = async (req, res, next) => {
     await sess.commitTransaction();
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not delete place",
+      "Something went wrong, could not delete place.",
       500
     );
     return next(error);
   }
 
-  res.status(200).json({ message: "Deleted place" });
+  res.status(200).json({ message: "Deleted place." });
 };
-
 exports.getPlacesById = getPlacesById;
 exports.getPlacesByUserId = getPlacesByUserId;
 exports.createPlace = createPlace;

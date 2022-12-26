@@ -4,14 +4,14 @@ export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  const activeHttpReques = useRef([]);
+  const activeHttpRequests = useRef([]);
 
   const sendRequest = useCallback(
     async (url, method = "GET", body = null, headers = {}) => {
       setIsLoading(true);
-
       const httpAbortCtrl = new AbortController();
-      activeHttpReques.current.push(httpAbortCtrl);
+      activeHttpRequests.current.push(httpAbortCtrl);
+
       try {
         const response = await fetch(url, {
           method,
@@ -22,7 +22,7 @@ export const useHttpClient = () => {
 
         const responseData = await response.json();
 
-        activeHttpReques.current = activeHttpReques.current.filter(
+        activeHttpRequests.current = activeHttpRequests.current.filter(
           (reqCtrl) => reqCtrl !== httpAbortCtrl
         );
 
@@ -32,10 +32,10 @@ export const useHttpClient = () => {
 
         setIsLoading(false);
         return responseData;
-      } catch (error) {
-        setError(error.message);
+      } catch (err) {
+        setError(err.message);
         setIsLoading(false);
-        throw error;
+        throw err;
       }
     },
     []
@@ -47,7 +47,8 @@ export const useHttpClient = () => {
 
   useEffect(() => {
     return () => {
-      activeHttpReques.current.forEach((abortCtrl) => abortCtrl.abort());
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      activeHttpRequests.current.forEach((abortCtrl) => abortCtrl.abort());
     };
   }, []);
 

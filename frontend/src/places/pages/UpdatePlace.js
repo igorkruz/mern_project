@@ -66,7 +66,6 @@ const UpdatePlace = () => {
 
   const placeUpdateSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(formState.inputs);
     try {
       await sendRequest(
         `http://localhost:5000/api/places/${placeId}`,
